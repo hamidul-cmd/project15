@@ -29,16 +29,29 @@ function Home() {
       pera: "Hassle-Free Returns",
     },
   ];
+  const herosizeBox = [
+    {
+      title: "Sizes",
+      sizes: ["S", "m", "L", "XL"],
+    },
+  ];
+  const herocoloerBox = [
+    {
+      title: "Color",
+      colors: ["#739CDA", "#DAA573", "#DAD673"],
+    },
+  ];
   return (
     <>
-      <section className="pt-10 px-4">
-        <div className="space-y-6">
+      <section className="pt-10 px-4 space-y-10 ll:px-10 xll:pt-20 xll:px-20 ll:flex ll:gap-10 xll:gap-14.5 xll:space-y-0 xll:items-center 3xl:pt-14.5 3xl:px-36.6 3xl:gap-20">
+        <div className="space-y-6 xll:space-y-0">
           <CommonTitle
             capsule="Style Redefined."
             title="Elevate Your Style with Klothink"
             pera="Explore a world of fashion at Klothink, where trends meet affordability. Immerse yourself in the latest styles and seize exclusive promotions."
+            hero={true}
           />
-          <div className="flex gap-2 items-center grow">
+          <div className="flex gap-2 items-center grow xll:mt-10 xll:mb-14.5 3xl:mt-12.5 3xl:mb-20">
             <YellowButton
               text="Shop Now"
               path="/products"
@@ -61,37 +74,118 @@ function Home() {
             />
             <WhiteButton text="Contact Us" path="/support" flex={true} />
           </div>
-          <div>
+          <div className="grid grid-cols-2 gap-2.5 p-2 bg-white-97 border-2 border-white rounded-xl shadow-ss2 xll:p-3.5 xll:gap-4 xll:shadow-ss1 3xl:p-4.8 3xl:gap-5">
             {heroCounter.map((counter) => (
-              <div key={counter.id}>
-                <h4>{counter.title}</h4>
-                <p>{counter.pera}</p>
+              <div
+                key={counter.id}
+                className="p-4.9 space-y-1 rounded-xl border border-white-95 bg-white xll:p-5.3 xll:space-y-1.5 3xl:p-[29px] 3xl:space-y-2.5"
+              >
+                <h4 className="text-xl font-semibold text-gray-10 leading-[27px] xll:text-26 xll:leading-9 3xl:text-34 3xl:leading-[46px]">
+                  {counter.title}
+                </h4>
+                <p className="text-sm text-gray-40 l-150 xll:text-base 3xl:text-lg">
+                  {counter.pera}
+                </p>
               </div>
             ))}
           </div>
         </div>
-        <div>
-          <img
-            src={heroimgsm}
-            alt="heroimg"
-            width="357px"
-            height="438px"
-            className="xll:hidden"
-          />
-          <img
-            src={heroimgmd}
-            alt="heroimg"
-            width="544px"
-            height="619px"
-            className="hidden xll:block 3xl:hidden"
-          />
-          <img
-            src={heroimglg}
-            alt="heroimg"
-            width="673px"
-            height="769px"
-            className="hidden 3xl:block"
-          />
+        <div className="flex justify-center items-center">
+          <div className="w-[357px] h-[w38px] xll:w-[544px] xll:h-[619px] 3xl:w-[673px] 3xl:h-[769px] bg-white-97 rounded-16 relative">
+            <img
+              src={heroimgsm}
+              alt="heroimg"
+              width="357px"
+              height="438px"
+              className="xll:hidden"
+            />
+            <img
+              src={heroimgmd}
+              alt="heroimg"
+              width="544px"
+              height="619px"
+              className="hidden xll:block 3xl:hidden"
+            />
+            <img
+              src={heroimglg}
+              alt="heroimg"
+              width="673px"
+              height="769px"
+              className="hidden 3xl:block"
+            />
+            <div className="absolute top-5 left-4 py-1.5 px-2.5 rounded-full bg-white text-sm font-medium l-150 text-gray-15 3xl:py-2 3xl:px-3.5 3xl:text-base">
+              Best Seller
+            </div>
+            <div className="absolute top-4 left-1/2 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:top-[36px] 3xl:py-1.5 3xl:px-3 3xl:text-base">
+              Hoodie{" "}
+              <div className="absolute w-[15px] h-[33px] border-t border-l border-gray-15 rounded-tl-[9px] top-1/2 left-0 -translate-x-full after:content-[''] after:block after:absolute after:h-1.5 after:w-1.5 after:rounded-full after:bottom-0 after:left-0 after:-translate-x-1/2 after:bg-black"></div>
+            </div>
+            <div className="absolute top-[35%] left-3 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:left-10 3xl:py-1.5 3xl:px-3 3xl:text-base">
+              Casual Jacket
+              <div className="absolute w-[15px] h-[33px] border-t border-r border-gray-15 rounded-tr-[9px] top-1/2 right-0 translate-x-full after:content-[''] after:block after:absolute after:h-1.5 after:w-1.5 after:rounded-full after:bottom-0 after:right-0 after:translate-x-1/2 after:bg-black"></div>
+            </div>
+            <div className="absolute top-[40%] right-1 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:right-[27px] xll:top-[60%] 3xl:py-1.5 3xl:px-3 3xl:text-base">
+              Full Sleeve
+              <div className="absolute w-[15px] h-[33px] border-t border-l border-gray-15 rounded-tl-[9px] top-1/2 left-0 -translate-x-full after:content-[''] after:block after:absolute after:h-1.5 after:w-1.5 after:rounded-full after:bottom-0 after:left-0 after:-translate-x-1/2 after:bg-black"></div>
+            </div>
+            <div className="absolute bottom-0 left-0 w-full px-4 pb-5 flex gap-x-5 gap-y-2.5 flex-wrap justify-between xll:gap-0">
+              {herosizeBox.map((size, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="py-2 pl-4 pr-2.5 bg-white rounded-full flex w-full gap-1.5 items-center xll:w-fit xll:order-2"
+                  >
+                    <h4 className="text-sm l-150 text-gray-15 font-medium 3xl:text-lg">
+                      {size.title}
+                    </h4>
+                    <div className="w-full flex gap-0.5 items-center 3xl:gap-1">
+                      {size.sizes.map((sizes, i) => {
+                        return (
+                          <span
+                            key={i}
+                            className="block grow py-[5px] rounded-full border border-white-95 bg-white-97 text-12 3xl:l-150 capitalize text-gray-15 text-center xll:w-10 3xl:py-0.5 3xl:w-12 3xl:text-base"
+                          >
+                            {sizes}
+                          </span>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+              {herocoloerBox.map((color, i) => {
+                return (
+                  <div
+                    key={i}
+                    className="py-2 pl-4 pr-2.5 bg-white rounded-full flex items-center gap-1.5"
+                  >
+                    <h4 className="text-sm font-medium l-150 text-gray-15 3xl:text-lg">
+                      {color.title}
+                    </h4>
+                    <div className="flex gap-0.5 py-[3px] px-1 border border-white-95 rounded-full 3xl:py-[5px] 3xl:px-1.5 3xl:gap-1">
+                      {color.colors.map((colors, i) => {
+                        return (
+                          <div
+                            key={i}
+                            className="rounded-full h-4 w-4 3xl:h-5 3xl:w-5"
+                            style={{
+                              backgroundColor: colors,
+                            }}
+                          ></div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+              <a
+                href="#"
+                className="py-2 px-10 bg-white text-sm font-medium left-10.5 text-gray-15 rounded-full xll:order-3 xll:px-5 3xl:text-lg"
+              >
+                View Similar
+              </a>
+            </div>
+          </div>
         </div>
       </section>
     </>
