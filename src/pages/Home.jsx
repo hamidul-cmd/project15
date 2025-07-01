@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import CommonTitle from "../components/CommonTitle";
 import YellowButton from "../components/Buttons/YellowButton";
 import WhiteButton from "../components/Buttons/WhiteButton";
 import heroimgsm from "../assets/heroimgsm.png";
 import heroimgmd from "../assets/heroimgmd.png";
 import heroimglg from "../assets/heroimglg.png";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import dis1 from "../assets/dis1.png";
+import dis2 from "../assets/dis2.png";
+import dis3 from "../assets/dis3.png";
+import dis4 from "../assets/dis4.png";
+import CommonSlider from "../components/Sliders/CommonSlider";
+gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const heroCounter = [
@@ -41,10 +49,192 @@ function Home() {
       colors: ["#739CDA", "#DAA573", "#DAD673"],
     },
   ];
+  const HeroLeftRef = useRef(null);
+  const HeroRightRef = useRef(null);
+  const herocapsuleref = useRef(null);
+  const herocapsuleref2 = useRef(null);
+  const herocapsuleref3 = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      if (window.innerWidth < 780) {
+        gsap.from(HeroLeftRef.current, {
+          y: 100,
+          opacity: 0,
+          duration: 1.5,
+          ease: "power4.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: HeroLeftRef.current,
+            start: "top 95%",
+            end: "bottom 95%",
+            toggleActions: "play none none none",
+          },
+        });
+        gsap.from(HeroRightRef.current, {
+          y: 100,
+          opacity: 0,
+          duration: 1.5,
+          ease: "power4.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: HeroRightRef.current,
+            start: "top 95%",
+            end: "bottom 95%",
+            toggleActions: "play none none none",
+          },
+        });
+      } else {
+        gsap.from(HeroLeftRef.current, {
+          x: -200,
+          opacity: 0,
+          duration: 1.5,
+          ease: "power4.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: HeroLeftRef.current,
+            start: "top 95%",
+            end: "bottom 95%",
+            toggleActions: "play none none none",
+          },
+        });
+        gsap.from(HeroRightRef.current, {
+          x: 200,
+          opacity: 0,
+          duration: 1.5,
+          ease: "power4.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: HeroRightRef.current,
+            start: "top 95%",
+            end: "bottom 95%",
+            toggleActions: "play none none none",
+          },
+        });
+        gsap.from(herocapsuleref.current, {
+          scale: 0,
+          opacity: 0,
+          ease: "power4.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: herocapsuleref.current,
+            start: "top 95%",
+            end: "bottom 95%",
+            toggleActions: "play none none none",
+          },
+          // Add delay to wait for HeroRightRef animation to complete
+          delay: 1.5, // Match duration of HeroRightRef animation
+        });
+        gsap.from(herocapsuleref2.current, {
+          scale: 0,
+          opacity: 0,
+          ease: "power4.out",
+          stagger: 0.2,
+          scrollTrigger: {
+            trigger: herocapsuleref2.current,
+            start: "top 95%",
+            end: "bottom 95%",
+            toggleActions: "play none none none",
+          },
+          // Add delay to wait for HeroRightRef animation to complete
+          delay: 1.5, // Match duration of HeroRightRef animation
+        });
+        gsap.from(herocapsuleref3.current, {
+          scale: 0,
+          opacity: 0,
+          ease: "power4.out",
+          stagger: 0.2,
+          delay: 1.5,
+          scrollTrigger: {
+            trigger: herocapsuleref3.current,
+            start: "top 95%",
+            end: "bottom 95%",
+            toggleActions: "play none none none",
+          },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
+  const DiscoverCirdData = [
+    {
+      id: 1,
+      title: "Classic Denim Jeans",
+      price: "$49.99",
+      img: dis1,
+    },
+    {
+      id: 2,
+      title: "Cozy Comfort Hoodie",
+      price: "$39.99",
+      img: dis2,
+    },
+    {
+      id: 3,
+      title: "Classic Polo Shirt",
+      price: "$29.99",
+      img: dis3,
+    },
+    {
+      id: 4,
+      title: "Chino Pants",
+      price: "$44.99",
+      img: dis4,
+    },
+    {
+      id: 5,
+      title: "Classic Denim Jeans",
+      price: "$49.99",
+      img: dis1,
+    },
+    {
+      id: 6,
+      title: "Cozy Comfort Hoodie",
+      price: "$39.99",
+      img: dis2,
+    },
+    {
+      id: 7,
+      title: "Classic Polo Shirt",
+      price: "$29.99",
+      img: dis3,
+    },
+    {
+      id: 8,
+      title: "Chino Pants",
+      price: "$44.99",
+      img: dis4,
+    },
+    {
+      id: 5,
+      title: "Classic Denim Jeans",
+      price: "$49.99",
+      img: dis1,
+    },
+    {
+      id: 6,
+      title: "Cozy Comfort Hoodie",
+      price: "$39.99",
+      img: dis2,
+    },
+    {
+      id: 7,
+      title: "Classic Polo Shirt",
+      price: "$29.99",
+      img: dis3,
+    },
+    {
+      id: 8,
+      title: "Chino Pants",
+      price: "$44.99",
+      img: dis4,
+    },
+  ];
   return (
     <>
-      <section className="pt-10 px-4 space-y-10 ll:px-10 xll:pt-20 xll:px-20 ll:flex ll:gap-10 xll:gap-14.5 xll:space-y-0 xll:items-center 3xl:pt-14.5 3xl:px-36.6 3xl:gap-20">
-        <div className="space-y-6 xll:space-y-0">
+      <section className="pt-10 px-4 space-y-10 ll:px-10 xll:pt-20 xll:px-20 ll:flex ll:gap-10 xll:gap-14.5 xll:space-y-0 xll:items-center 3xl:pt-14.5 3xl:px-36.6 3xl:gap-20 overflow-x-hidden">
+        <div ref={HeroLeftRef} className="space-y-6 xll:space-y-0">
           <CommonTitle
             capsule="Style Redefined."
             title="Elevate Your Style with Klothink"
@@ -90,7 +280,7 @@ function Home() {
             ))}
           </div>
         </div>
-        <div className="flex justify-center items-center">
+        <div ref={HeroRightRef} className="flex justify-center items-center">
           <div className="w-[357px] h-[w38px] xll:w-[544px] xll:h-[619px] 3xl:w-[673px] 3xl:h-[769px] bg-white-97 rounded-16 relative">
             <img
               src={heroimgsm}
@@ -116,19 +306,28 @@ function Home() {
             <div className="absolute top-5 left-4 py-1.5 px-2.5 rounded-full bg-white text-sm font-medium l-150 text-gray-15 3xl:py-2 3xl:px-3.5 3xl:text-base">
               Best Seller
             </div>
-            <div className="absolute top-4 left-1/2 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:top-[36px] 3xl:py-1.5 3xl:px-3 3xl:text-base">
+            <div
+              ref={herocapsuleref3}
+              className="absolute top-4 left-1/2 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:top-[36px] 3xl:py-1.5 3xl:px-3 3xl:text-base hero__capsule"
+            >
               Hoodie{" "}
               <div className="absolute w-[15px] h-[33px] border-t border-l border-gray-15 rounded-tl-[9px] top-1/2 left-0 -translate-x-full after:content-[''] after:block after:absolute after:h-1.5 after:w-1.5 after:rounded-full after:bottom-0 after:left-0 after:-translate-x-1/2 after:bg-black"></div>
             </div>
-            <div className="absolute top-[35%] left-3 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:left-10 3xl:py-1.5 3xl:px-3 3xl:text-base">
+            <div
+              ref={herocapsuleref2}
+              className="absolute top-[35%] left-3 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:left-10 3xl:py-1.5 3xl:px-3 3xl:text-base hero__capsule"
+            >
               Casual Jacket
               <div className="absolute w-[15px] h-[33px] border-t border-r border-gray-15 rounded-tr-[9px] top-1/2 right-0 translate-x-full after:content-[''] after:block after:absolute after:h-1.5 after:w-1.5 after:rounded-full after:bottom-0 after:right-0 after:translate-x-1/2 after:bg-black"></div>
             </div>
-            <div className="absolute top-[40%] right-1 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:right-[27px] xll:top-[60%] 3xl:py-1.5 3xl:px-3 3xl:text-base">
+            <div
+              ref={herocapsuleref}
+              className="absolute top-[40%] right-1 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:right-[27px] xll:top-[60%] 3xl:py-1.5 3xl:px-3 3xl:text-base hero__capsule"
+            >
               Full Sleeve
               <div className="absolute w-[15px] h-[33px] border-t border-l border-gray-15 rounded-tl-[9px] top-1/2 left-0 -translate-x-full after:content-[''] after:block after:absolute after:h-1.5 after:w-1.5 after:rounded-full after:bottom-0 after:left-0 after:-translate-x-1/2 after:bg-black"></div>
             </div>
-            <div className="absolute bottom-0 left-0 w-full px-4 pb-5 flex gap-x-5 gap-y-2.5 flex-wrap justify-between xll:gap-0">
+            <div className="absolute bottom-0 left-0 w-full px-4 pb-5 flex gap-x-5 gap-y-2.5 flex-wrap justify-between xll:gap-0 xll:items-center">
               {herosizeBox.map((size, i) => {
                 return (
                   <div
@@ -180,13 +379,30 @@ function Home() {
               })}
               <a
                 href="#"
-                className="py-2 px-10 bg-white text-sm font-medium left-10.5 text-gray-15 rounded-full xll:order-3 xll:px-5 3xl:text-lg"
+                className="py-2 px-10 bg-white text-sm font-medium left-10.5 text-gray-15 rounded-full xll:order-3 xll:px-5 3xl:text-lg l-150 h-fit"
               >
                 View Similar
               </a>
             </div>
           </div>
         </div>
+      </section>
+      <section className="section">
+        <CommonTitle
+          capsule="Products"
+          title="Discover Fashion."
+          pera="Dive into a world of fashion innovation at Klothink. Our carefully curated collections bring together the latest trends and timeless classics, ensuring you find the perfect pieces for every occasion."
+          buttonText="View All Products"
+          buttonPath="/products"
+        />
+        <CommonSlider cardData={DiscoverCirdData} />
+      </section>
+      <section className="section">
+        <CommonTitle
+          capsule="About Us"
+          title="The Klothink Experience."
+          pera="At Klothink, we breathe life into fashion, blending creativity with commitment. Our journey is fueled by a dedication to delivering unparalleled style and quality. Join us in redefining fashion and embracing a community where every purchase tells a story."
+        />
       </section>
     </>
   );

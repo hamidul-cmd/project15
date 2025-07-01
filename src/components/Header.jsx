@@ -25,7 +25,7 @@ function Header() {
   const [showmenu, setShowmenu] = React.useState(false);
   return (
     <>
-      <header className="flex justify-between items-center px-4 py-5 after:content-[''] after:h-[2px] after:w-full relative after:absolute after:bg-white-95 after:bottom-0 after:left-0 xll:px-20 xll:py-4.8 3xl:py-5 3xl:px-36.6">
+      <header className="flex justify-between items-center px-4 py-5 after:content-[''] after:h-[2px] after:w-full relative after:absolute after:bg-white-95 after:bottom-0 after:left-0 xll:px-20 xll:py-4.8 3xl:py-5 3xl:px-36.6 max-w-wrapper m-auto">
         <ul
           className={`absolute top-0 left-0 w-full h-screen flex flex-col pt-24.5 items-center gap-6 bg-white z-[500] transition-all duration-300 ease-in ll:pt-0 ${
             showmenu ? "translate-y-0" : "translate-y-[-110%]"
