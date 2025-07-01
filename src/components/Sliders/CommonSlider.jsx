@@ -151,16 +151,6 @@ function CommonSlider({ cardData }) {
               );
             })}
           </div>
-          {/* <div
-            onMouseDown={dragStart}
-            onMouseMove={drag}
-            onMouseUp={dragEnd}
-            onMouseLeave={dragEnd}
-            onTouchStart={dragStart}
-            onTouchMove={drag}
-            onTouchEnd={dragEnd}
-            className="absolute top-0 left-0 w-full h-full bg-transparent z-20"
-          ></div> */}
         </div>
         <div className="flex justify-center gap-5 absolute bottom-0 right-0 z-40 ll:hidden xll:block">
           <button
