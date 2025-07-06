@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ProductsCird({ data,isDragging  }) {
-    const handleClick = (e) => {
-        if (isDragging) {
-          // Prevent link navigation if a drag just occurred
-          e.preventDefault();
-        }
-      };
+function ProductsCird({ data, isDragging }) {
+  const handleClick = (e) => {
+    if (isDragging) {
+      // Prevent link navigation if a drag just occurred
+      e.preventDefault();
+    }
+    window.scrollTo({ top: 0, left: 0 });
+  };
   return (
     <>
       <Link
-        to="/productsdetails"
+        to={`/productsdetails/${data.id}`}
         onClick={handleClick}
         onDragStart={(e) => e.preventDefault()}
         className="w-[358px] ll:w-[320px] xll:w-[297px] 3xl:w-[376px] block select-none"
@@ -22,7 +23,7 @@ function ProductsCird({ data,isDragging  }) {
             alt="productimg"
             width="377px"
             height="384px"
-            draggable={false} 
+            draggable={false}
             className="xll:h-[318px] 3xl:h-[384px] select-none"
           />
           <div className="p-4 bg-yellow-50 rounded-full w-fit absolute bottom-3 right-3 3xl:p-4.8">

@@ -1,8 +1,5 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import logosm from "../assets/logosm.png";
-import logomd from "../assets/logomd.png";
-import logolg from "../assets/logolg.png";
 
 function Header() {
   const navLinks = [
@@ -63,23 +60,23 @@ function Header() {
           <Link to="/">
             <picture>
               <source
-                srcSet={logolg}
+                srcSet="https://i.imgur.com/EjzKprc.png"
                 media="(min-width: 1920px)"
                 height="60px"
                 width="60px"
               />
               <source
-                srcSet={logomd}
+                srcSet="https://i.imgur.com/Cv9qJYr.png"
                 media="(min-width: 1440px)"
                 height="40px"
                 width="40px"
               />
-              <img src={logosm} alt="logo" />
+              <img src="https://i.imgur.com/m9koLEw.png" alt="logo" />
             </picture>
           </Link>
         </div>
         <div className="flex items-center gap-2.5">
-          <button className="p-3 bg-yellow-50 rounded-full block cursor-pointer 3xl:p-3.5">
+          <button name="cart" aria-label="Open shopping cart" className="p-3 bg-yellow-50 rounded-full block cursor-pointer 3xl:p-3.5">
             <svg
               className="w-5 h-5 3xl:h-6 3xl:w-6"
               viewBox="0 0 20 20"
@@ -115,8 +112,8 @@ function Header() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M4.25 9.5625C4.25 8.9757 4.7257 8.5 5.3125 8.5H28.6875C29.2743 8.5 29.75 8.9757 29.75 9.5625C29.75 10.1493 29.2743 10.625 28.6875 10.625H5.3125C4.7257 10.625 4.25 10.1493 4.25 9.5625ZM4.25 17C4.25 16.4132 4.7257 15.9375 5.3125 15.9375H28.6875C29.2743 15.9375 29.75 16.4132 29.75 17C29.75 17.5868 29.2743 18.0625 28.6875 18.0625H5.3125C4.7257 18.0625 4.25 17.5868 4.25 17ZM15.9375 24.4375C15.9375 23.8507 16.4132 23.375 17 23.375H28.6875C29.2743 23.375 29.75 23.8507 29.75 24.4375C29.75 25.0243 29.2743 25.5 28.6875 25.5H17C16.4132 25.5 15.9375 25.0243 15.9375 24.4375Z"
                 fill="#262626"
               />

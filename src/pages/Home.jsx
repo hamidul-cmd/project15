@@ -1,42 +1,41 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import CommonTitle from "../components/CommonTitle";
 import YellowButton from "../components/Buttons/YellowButton";
 import WhiteButton from "../components/Buttons/WhiteButton";
-import heroimgsm from "../assets/heroimgsm.png";
-import heroimgmd from "../assets/heroimgmd.png";
-import heroimglg from "../assets/heroimglg.png";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import dis1 from "../assets/dis1.png";
-import dis2 from "../assets/dis2.png";
-import dis3 from "../assets/dis3.png";
-import dis4 from "../assets/dis4.png";
 import CommonSlider from "../components/Sliders/CommonSlider";
+import AboutCard from "../components/Cards/AboutCard";
+import TestimonialsCard from "../components/Cards/TestimonialsCard";
+import Faq from "../components/commonsection/Faq";
+import { AboutCardData } from "../Data/AboutCardData";
+import { HeroCounter } from "../Data/HeroCounter";
+import { PruductsData } from "../Data/PruductsData";
+import { TestimonialsCardData } from "../Data/TestimonialsCardData";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
-  const heroCounter = [
-    {
-      id: 1,
-      title: "Over 1000+",
-      pera: "Trendsetting Styles",
-    },
-    {
-      id: 2,
-      title: "99%",
-      pera: "Customer Satisfaction Rate",
-    },
-    {
-      id: 3,
-      title: "24/7",
-      pera: "Shopping Convenience",
-    },
-    {
-      id: 4,
-      title: "30-Day",
-      pera: "Hassle-Free Returns",
-    },
-  ];
+  const [isMobile, setIsMobile] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+
+ 
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 780);
+    };
+
+    handleResize(); // run once on mount
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const cardsToShow = isMobile
+    ? AboutCardData.slice(0, showAll ? AboutCardData.length : 2)
+    : AboutCardData;
+
+
   const herosizeBox = [
     {
       title: "Sizes",
@@ -154,83 +153,10 @@ function Home() {
         });
       }
     });
-
     return () => ctx.revert();
   }, []);
-  const DiscoverCirdData = [
-    {
-      id: 1,
-      title: "Classic Denim Jeans",
-      price: "$49.99",
-      img: dis1,
-    },
-    {
-      id: 2,
-      title: "Cozy Comfort Hoodie",
-      price: "$39.99",
-      img: dis2,
-    },
-    {
-      id: 3,
-      title: "Classic Polo Shirt",
-      price: "$29.99",
-      img: dis3,
-    },
-    {
-      id: 4,
-      title: "Chino Pants",
-      price: "$44.99",
-      img: dis4,
-    },
-    {
-      id: 5,
-      title: "Classic Denim Jeans",
-      price: "$49.99",
-      img: dis1,
-    },
-    {
-      id: 6,
-      title: "Cozy Comfort Hoodie",
-      price: "$39.99",
-      img: dis2,
-    },
-    {
-      id: 7,
-      title: "Classic Polo Shirt",
-      price: "$29.99",
-      img: dis3,
-    },
-    {
-      id: 8,
-      title: "Chino Pants",
-      price: "$44.99",
-      img: dis4,
-    },
-    {
-      id: 5,
-      title: "Classic Denim Jeans",
-      price: "$49.99",
-      img: dis1,
-    },
-    {
-      id: 6,
-      title: "Cozy Comfort Hoodie",
-      price: "$39.99",
-      img: dis2,
-    },
-    {
-      id: 7,
-      title: "Classic Polo Shirt",
-      price: "$29.99",
-      img: dis3,
-    },
-    {
-      id: 8,
-      title: "Chino Pants",
-      price: "$44.99",
-      img: dis4,
-    },
-  ];
+
+
   return (
     <>
       <section className="pt-10 px-4 space-y-10 ll:px-10 xll:pt-20 xll:px-20 ll:flex ll:gap-10 xll:gap-14.5 xll:space-y-0 xll:items-center 3xl:pt-14.5 3xl:px-36.6 3xl:gap-20 overflow-x-hidden">
@@ -254,8 +180,8 @@ function Home() {
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M6.99976 5.5V6.125H5.34382C4.54419 6.125 3.87361 6.7287 3.7899 7.52393L2.73727 17.5239C2.64016 18.4465 3.36352 19.25 4.29118 19.25H17.2085C18.1361 19.25 18.8595 18.4465 18.7624 17.5239L17.7097 7.52393C17.626 6.7287 16.9554 6.125 16.1558 6.125H14.4998V5.5C14.4998 3.42893 12.8208 1.75 10.7498 1.75C8.67869 1.75 6.99976 3.42893 6.99976 5.5ZM10.7498 3C9.36905 3 8.24976 4.11929 8.24976 5.5V6.125H13.2498V5.5C13.2498 4.11929 12.1305 3 10.7498 3ZM8.24976 9.875C8.24976 11.2557 9.36905 12.375 10.7498 12.375C12.1305 12.375 13.2498 11.2557 13.2498 9.875V9.25C13.2498 8.90482 13.5296 8.625 13.8748 8.625C14.2199 8.625 14.4998 8.90482 14.4998 9.25V9.875C14.4998 11.9461 12.8208 13.625 10.7498 13.625C8.67869 13.625 6.99976 11.9461 6.99976 9.875V9.25C6.99976 8.90482 7.27958 8.625 7.62476 8.625C7.96994 8.625 8.24976 8.90482 8.24976 9.25V9.875Z"
                     fill="#262626"
                   />
@@ -265,7 +191,7 @@ function Home() {
             <WhiteButton text="Contact Us" path="/support" flex={true} />
           </div>
           <div className="grid grid-cols-2 gap-2.5 p-2 bg-white-97 border-2 border-white rounded-xl shadow-ss2 xll:p-3.5 xll:gap-4 xll:shadow-ss1 3xl:p-4.8 3xl:gap-5">
-            {heroCounter.map((counter) => (
+            {HeroCounter.map((counter) => (
               <div
                 key={counter.id}
                 className="p-4.9 space-y-1 rounded-xl border border-white-95 bg-white xll:p-5.3 xll:space-y-1.5 3xl:p-[29px] 3xl:space-y-2.5"
@@ -283,24 +209,24 @@ function Home() {
         <div ref={HeroRightRef} className="flex justify-center items-center">
           <div className="w-[357px] h-[w38px] xll:w-[544px] xll:h-[619px] 3xl:w-[673px] 3xl:h-[769px] bg-white-97 rounded-16 relative">
             <img
-              src={heroimgsm}
+              src="https://i.imgur.com/6yqFw5f.png"
               alt="heroimg"
               width="357px"
               height="438px"
               className="xll:hidden"
             />
             <img
-              src={heroimgmd}
+              src="https://i.imgur.com/FinXS6W.png"
               alt="heroimg"
               width="544px"
               height="619px"
               className="hidden xll:block 3xl:hidden"
             />
             <img
-              src={heroimglg}
+              src="https://i.imgur.com/WTR8F5i.png"
               alt="heroimg"
               width="673px"
-              height="769px"
+              height="750px"
               className="hidden 3xl:block"
             />
             <div className="absolute top-5 left-4 py-1.5 px-2.5 rounded-full bg-white text-sm font-medium l-150 text-gray-15 3xl:py-2 3xl:px-3.5 3xl:text-base">
@@ -395,13 +321,66 @@ function Home() {
           buttonText="View All Products"
           buttonPath="/products"
         />
-        <CommonSlider cardData={DiscoverCirdData} />
+        <CommonSlider cardData={PruductsData} />
       </section>
-      <section className="section">
+      <section className="section overflow-hidden">
         <CommonTitle
           capsule="About Us"
           title="The Klothink Experience."
           pera="At Klothink, we breathe life into fashion, blending creativity with commitment. Our journey is fueled by a dedication to delivering unparalleled style and quality. Join us in redefining fashion and embracing a community where every purchase tells a story."
+        />
+        <div className="grid grid-cols-1 ll:grid-cols-2 xll:grid-cols-3 gap-5 bg-white-99 rounded-16 p-4.9 border border-white-97 3xl:p-6.9 3xl:rounded-20 3xl:gap-7.5 ">
+          {cardsToShow.map((item) => (
+            <AboutCard key={item.id} item={item} />
+          ))}
+
+          {isMobile && AboutCardData.length > 3 && !showAll && (
+            <button
+              onClick={() => setShowAll(true)}
+              name="View All"
+              aria-label="View All"
+              className="flex items-center justify-center gap-2 text-base font-medium text-[#4C4C4D]"
+            >
+              <span>View All</span>
+              <svg
+                width="20"
+                height="21"
+                viewBox="0 0 20 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 4.25V16.75M10 16.75L15.625 11.125M10 16.75L4.375 11.125"
+                  stroke="#4C4C4D"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          )}
+        </div>
+      </section>
+      <section className="section overflow-hidden">
+        <CommonTitle
+          capsule="Testimonials"
+          title="Customers Love."
+          pera="At Klothink, our customers are the heartbeat of our brand. Explore the heartfelt testimonials shared by those who have experienced the magic of Klothink fashion."
+          buttonText="View All Testimonials"
+          buttonPath="#"
+        />
+        <div className="grid grid-cols-1 gap-5 ll:grid-cols-3 3xl:gap-7.5 p-4.9 bg-white-99 border border-white-97 rounded-16 xll:p-5.3 3xl:p-6.9 3xl:rounded-20">
+          {TestimonialsCardData.map((card, i) => {
+            return <TestimonialsCard key={i} card={card} />;
+          })}
+        </div>
+      </section>
+      <Faq />
+      <section className="section">
+        <CommonTitle
+          capsule="How it Works ?"
+          title="Seamless Experience."
+          pera="At Klothink, we've designed a straightforward shopping experience to make fashion accessible. Explore the journey from discovering the latest trends to receiving your handpicked styles with ease."
         />
       </section>
     </>
