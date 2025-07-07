@@ -21,9 +21,9 @@ function Faqcards({ faq, ans, isOpen, toggleFaq }) {
             {faq}
           </h3>
           <div className="bg-orange-97 h-8 flex justify-center items-center relative">
-            <span className="block w-2.5 h-0.5 bg-gray-15"></span>
+            <span className="block w-2.5 3xl:w-3.5 h-0.5 bg-gray-15"></span>
             <span
-              className={`block w-2.5 h-0.5 bg-gray-15 absolute transition-all duration-150 ease-in ${
+              className={`block w-2.5 3xl:w-3.5 h-0.5 bg-gray-15 absolute transition-all duration-150 ease-in ${
                 isOpen ? "rotate-180" : "rotate-90 "
               }`}
             ></span>

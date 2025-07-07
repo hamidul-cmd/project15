@@ -12,13 +12,13 @@ import { AboutCardData } from "../Data/AboutCardData";
 import { HeroCounter } from "../Data/HeroCounter";
 import { PruductsData } from "../Data/PruductsData";
 import { TestimonialsCardData } from "../Data/TestimonialsCardData";
+import { ExperienceData } from "../Data/ExperienceData";
+import Experiencecard from "../components/Cards/Experiencecard";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const [isMobile, setIsMobile] = useState(false);
   const [showAll, setShowAll] = useState(false);
-
- 
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,7 +34,6 @@ function Home() {
   const cardsToShow = isMobile
     ? AboutCardData.slice(0, showAll ? AboutCardData.length : 2)
     : AboutCardData;
-
 
   const herosizeBox = [
     {
@@ -56,106 +55,121 @@ function Home() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      if (window.innerWidth < 780) {
-        gsap.from(HeroLeftRef.current, {
-          y: 100,
-          opacity: 0,
-          duration: 1.5,
-          ease: "power4.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: HeroLeftRef.current,
-            start: "top 95%",
-            end: "bottom 95%",
-            toggleActions: "play none none none",
-          },
-        });
-        gsap.from(HeroRightRef.current, {
-          y: 100,
-          opacity: 0,
-          duration: 1.5,
-          ease: "power4.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: HeroRightRef.current,
-            start: "top 95%",
-            end: "bottom 95%",
-            toggleActions: "play none none none",
-          },
-        });
-      } else {
-        gsap.from(HeroLeftRef.current, {
-          x: -200,
-          opacity: 0,
-          duration: 1.5,
-          ease: "power4.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: HeroLeftRef.current,
-            start: "top 95%",
-            end: "bottom 95%",
-            toggleActions: "play none none none",
-          },
-        });
-        gsap.from(HeroRightRef.current, {
-          x: 200,
-          opacity: 0,
-          duration: 1.5,
-          ease: "power4.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: HeroRightRef.current,
-            start: "top 95%",
-            end: "bottom 95%",
-            toggleActions: "play none none none",
-          },
-        });
-        gsap.from(herocapsuleref.current, {
-          scale: 0,
-          opacity: 0,
-          ease: "power4.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: herocapsuleref.current,
-            start: "top 95%",
-            end: "bottom 95%",
-            toggleActions: "play none none none",
-          },
-          // Add delay to wait for HeroRightRef animation to complete
-          delay: 1.5, // Match duration of HeroRightRef animation
-        });
-        gsap.from(herocapsuleref2.current, {
-          scale: 0,
-          opacity: 0,
-          ease: "power4.out",
-          stagger: 0.2,
-          scrollTrigger: {
-            trigger: herocapsuleref2.current,
-            start: "top 95%",
-            end: "bottom 95%",
-            toggleActions: "play none none none",
-          },
-          // Add delay to wait for HeroRightRef animation to complete
-          delay: 1.5, // Match duration of HeroRightRef animation
-        });
-        gsap.from(herocapsuleref3.current, {
-          scale: 0,
-          opacity: 0,
-          ease: "power4.out",
-          stagger: 0.2,
-          delay: 1.5,
-          scrollTrigger: {
-            trigger: herocapsuleref3.current,
-            start: "top 95%",
-            end: "bottom 95%",
-            toggleActions: "play none none none",
-          },
-        });
-      }
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          // Viewports below 900px
+          isSmall: "(max-width: 899px)",
+          // Viewports 900px and above
+          isLarge: "(min-width: 900px)",
+        },
+        (context) => {
+          const { isSmall, isLarge } = context.conditions;
+
+          if (isSmall) {
+            gsap.from(HeroLeftRef.current, {
+              y: 100,
+              opacity: 0,
+              duration: 1.5,
+              ease: "power4.out",
+              stagger: 0.2,
+              scrollTrigger: {
+                trigger: HeroLeftRef.current,
+                start: "top 95%",
+                end: "bottom 95%",
+                toggleActions: "play none none none",
+              },
+            });
+            gsap.from(HeroRightRef.current, {
+              y: 100,
+              opacity: 0,
+              duration: 1.5,
+              ease: "power4.out",
+              stagger: 0.2,
+              scrollTrigger: {
+                trigger: HeroRightRef.current,
+                start: "top 95%",
+                end: "bottom 95%",
+                toggleActions: "play none none none",
+              },
+            });
+          }
+
+          if (isLarge) {
+            gsap.from(HeroLeftRef.current, {
+              x: -200,
+              opacity: 0,
+              duration: 1.5,
+              ease: "power4.out",
+              stagger: 0.2,
+              scrollTrigger: {
+                trigger: HeroLeftRef.current,
+                start: "top 95%",
+                end: "bottom 95%",
+                toggleActions: "play none none none",
+              },
+            });
+            gsap.from(HeroRightRef.current, {
+              x: 200,
+              opacity: 0,
+              duration: 1.5,
+              ease: "power4.out",
+              stagger: 0.2,
+              scrollTrigger: {
+                trigger: HeroRightRef.current,
+                start: "top 95%",
+                end: "bottom 95%",
+                toggleActions: "play none none none",
+              },
+            });
+            gsap.from(herocapsuleref.current, {
+              scale: 0,
+              opacity: 0,
+              ease: "power4.out",
+              stagger: 0.2,
+              scrollTrigger: {
+                trigger: herocapsuleref.current,
+                start: "top 95%",
+                end: "bottom 95%",
+                toggleActions: "play none none none",
+              },
+              // Add delay to wait for HeroRightRef animation to complete
+              delay: 1.5, // Match duration of HeroRightRef animation
+            });
+            gsap.from(herocapsuleref2.current, {
+              scale: 0,
+              opacity: 0,
+              ease: "power4.out",
+              stagger: 0.2,
+              scrollTrigger: {
+                trigger: herocapsuleref2.current,
+                start: "top 95%",
+                end: "bottom 95%",
+                toggleActions: "play none none none",
+              },
+              // Add delay to wait for HeroRightRef animation to complete
+              delay: 1.5, // Match duration of HeroRightRef animation
+            });
+            gsap.from(herocapsuleref3.current, {
+              scale: 0,
+              opacity: 0,
+              ease: "power4.out",
+              stagger: 0.2,
+              delay: 1.5,
+              scrollTrigger: {
+                trigger: herocapsuleref3.current,
+                start: "top 95%",
+                end: "bottom 95%",
+                toggleActions: "play none none none",
+              },
+            });
+          }
+        }
+      );
     });
     return () => ctx.revert();
   }, []);
-
 
   return (
     <>
@@ -382,6 +396,11 @@ function Home() {
           title="Seamless Experience."
           pera="At Klothink, we've designed a straightforward shopping experience to make fashion accessible. Explore the journey from discovering the latest trends to receiving your handpicked styles with ease."
         />
+        <div className="grid grid-cols-1 ll:grid-cols-2 xll:grid-cols-4 gap-2.5 xll:gap-4 3xl:gap-5 p-[9px] xll:p-3.6 3xl:p-4.9 3xl:rounded-20 bg-white-99 border border-white-97 rounded-16">
+          {ExperienceData.map((card, i) => {
+            return <Experiencecard key={i} card={card} i={i} />;
+          })}
+        </div>
       </section>
     </>
   );

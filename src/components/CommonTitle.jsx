@@ -5,7 +5,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function CommonTitle({ capsule, title, pera, hero, buttonText, buttonPath }) {
+function CommonTitle({
+  capsule,
+  title,
+  pera,
+  hero,
+  buttonText,
+  buttonPath,
+  product,
+}) {
   const leftRef = useRef(null);
   const rightRef = useRef(null);
 
@@ -91,7 +99,11 @@ function CommonTitle({ capsule, title, pera, hero, buttonText, buttonPath }) {
     <div
       className={`${
         hero
-          ? "mb-6 xll:mb-10 3xl:mb-12.5"
+          ? product
+            ? "mb-0"
+            : "mb-6 xll:mb-10 3xl:mb-12.5"
+          : product
+          ? "mb-0"
           : "mb-10 xll:mb-14.5 ll:mb-12.5 3xl:mb-20"
       } ${
         buttonText

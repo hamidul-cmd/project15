@@ -134,6 +134,11 @@ header .nav__links.active {
   padding-inline: 16px;
   padding-top: 80px;
 }
+.products__section {
+  padding-inline: 16px;
+  padding-top: 60px;
+}
+
 .svg {
   height: 20px;
   width: 20px;
@@ -142,11 +147,17 @@ header .nav__links.active {
   .section {
     padding-inline: 40px;
   }
+  .products__section{
+    padding-inline: 40px;
+  }
 }
 @media screen and (min-width: 1440px)  {
   .section {
     padding-inline: 80px;
     padding-top: 150px;
+  }
+  .products__section {
+    padding-inline: 80px;
   }
 }
 @media screen and (min-width: 1920px)   {
@@ -157,5 +168,9 @@ header .nav__links.active {
   .svg {
     height: 24px;
     width: 24px;
+  }
+  .products__section {
+    padding-inline: 162px;
+    padding-top: 80px;
   }
 }
