@@ -14,6 +14,7 @@ import { PruductsData } from "../Data/PruductsData";
 import { TestimonialsCardData } from "../Data/TestimonialsCardData";
 import { ExperienceData } from "../Data/ExperienceData";
 import Experiencecard from "../components/Cards/Experiencecard";
+import Testimonialssection from "../components/Testimonialssection";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
@@ -383,11 +384,7 @@ function Home() {
           buttonText="View All Testimonials"
           buttonPath="#"
         />
-        <div className="grid grid-cols-1 gap-5 ll:grid-cols-3 3xl:gap-7.5 p-4.9 bg-white-99 border border-white-97 rounded-16 xll:p-5.3 3xl:p-6.9 3xl:rounded-20">
-          {TestimonialsCardData.map((card, i) => {
-            return <TestimonialsCard key={i} card={card} />;
-          })}
-        </div>
+       <Testimonialssection TestimonialsCardData={TestimonialsCardData}/>
       </section>
       <Faq />
       <section className="section">

@@ -5,10 +5,12 @@ import Products from "../pages/Products";
 import ProductsDetails from "../pages/ProductsDetails";
 import Support from "../pages/Support";
 import Layout from "../Layout";
+import ScrollToTop from "../components/ScrollToTop";
 
 function AppRouts() {
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />

@@ -7,8 +7,8 @@ function ProductsCird({ data, isDragging }) {
       // Prevent link navigation if a drag just occurred
       e.preventDefault();
     }
-    window.scrollTo({ top: 0, left: 0 });
   };
+
   return (
     <>
       <Link

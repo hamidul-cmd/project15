@@ -144,7 +144,6 @@ function CommonSlider({ cardData }) {
             onTouchEnd={dragEnd}
           >
             {cardData.map((data, index) => {
-              console.log(data);
               return (
                 <div key={index}>
                   <ProductsCird data={data} key={data.id} isDragging={isDragging} />
