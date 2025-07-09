@@ -376,7 +376,7 @@ function Home() {
           )}
         </div>
       </section>
-      <section className="section overflow-hidden">
+      <section id="testimonials" className="section overflow-hidden">
         <CommonTitle
           capsule="Testimonials"
           title="Customers Love."

@@ -98,7 +98,7 @@ function Products() {
           })}
         </div>
       </section>
-      <section className="products__section">
+      <section id="casual" className="products__section">
         <PruductsCommontitle
           title="Casual Collection"
           pera="Discover our versatile men's casual wear collection, where comfort meets contemporary fashion."

@@ -17,6 +17,8 @@ function ProductsDetails() {
   const images = product.sliderimg;
   const testimonials = product.testimonials;
   const [selectedImage, setSelectedImage] = useState(images[0]);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
   return (
     <>
       <section className="px-4 pt-10 xll:px-20 xll:pt-20 3xl:px-36.6 3xl:pt-20 grid grid-cols-1 gap-10 ll:grid-cols-2 xll:gap-10 3xl:gap-12.5">
@@ -130,12 +132,33 @@ function ProductsDetails() {
               </h3>
               <div className="flex py-[5px] px-2 border border-white-95 rounded-full gap-1 w-fit 3xl:py-2 3xl:px-2.5">
                 {product.colors.map((color, i) => {
+                  const isSeleColor = selectedColor === color;
                   return (
                     <div
                       key={i}
-                      className="h-5 w-5 rounded-full 3xl:h-6 3xl:w-6"
+                      className="h-5 w-5 rounded-full 3xl:h-6 3xl:w-6 cursor-pointer relative"
                       style={{ backgroundColor: color }}
-                    ></div>
+                      onClick={() => setSelectedColor(color)}
+                    >
+                      <svg
+                        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
+                          isSeleColor ? "block" : "hidden"
+                        }`}
+                        width="14"
+                        height="12"
+                        viewBox="0 0 14 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M1 6.55556L5.8 11L13 1"
+                          stroke="white"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
                   );
                 })}
               </div>
@@ -146,10 +169,16 @@ function ProductsDetails() {
               </h3>
               <div className="flex gap-1.5">
                 {product.size.map((size, i) => {
+                  const isSelected = selectedSize === size;
                   return (
                     <div
                       key={i}
-                      className="h-[33px] w-[33px] flex justify-center items-center bg-white-97 border border-white-95 rounded text-sm l-150 text-gray-15 3xl:w-12 3xl:h-10 3xl:text-lg"
+                      onClick={() => setSelectedSize(size)}
+                      className={`h-[33px] w-[33px] cursor-pointer flex justify-center items-center border border-white-95 rounded text-sm l-150 3xl:w-12 3xl:h-10 3xl:text-lg  ${
+                        isSelected
+                          ? "bg-gray-15 text-white"
+                          : "bg-white-97 text-gray-15"
+                      }`}
                     >
                       {size}
                     </div>

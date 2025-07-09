@@ -3,7 +3,7 @@ import CommonTitle from "../CommonTitle";
 import Faqcards from "../Cards/Faqcards";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger); 
 
 
 function Faq() {
@@ -117,7 +117,7 @@ function Faq() {
 
   return (
     <>
-      <section className="section">
+      <section id="faq" className="section">
         <CommonTitle
           capsule="FAQ"
           title="Questions? We Have Answers."
