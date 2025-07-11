@@ -128,8 +128,8 @@ function Footer() {
                   key={index}
                   className={`text-sm l-130 text-gray-60 3xl:text-lg ${
                     index === 0
-                      ? "pr-5 border-r border-white-95 3xl:pr-6"
-                      : "pl-5 3xl:pl-6"
+                      ? "ll:pr-5 ll:border-r border-white-95 3xl:pr-6"
+                      : "ll:pl-5 3xl:pl-6"
                   }`}
                 >
                   <Link to={link.path}>{link.text}</Link>
