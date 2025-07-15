@@ -11,7 +11,9 @@ function AboutCard({ item }) {
           <div className="p-3 rounded-full bg-yellow-50 xll:p-3.5 3xl:p-4">
             {item.icon}
           </div>
-          <h3 className="text-base font-semibold l-150 text-gray-15 xll:text-lg 3xl:text-xl">{item.title}</h3>
+          <h3 className="text-base font-semibold l-150 text-gray-15 xll:text-lg 3xl:text-xl">
+            {item.title}
+          </h3>
         </div>
         <p className="text-sm l-150 text-gray-40 3xl:text-base">{item.pera}</p>
       </div>

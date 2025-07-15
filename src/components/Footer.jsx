@@ -1,36 +1,14 @@
 import React, { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { footersicialLinks } from "../Data/FootersicialLinks";
 import { footerlinksmobile } from "../Data/Footerlinksmobile";
 import { footerlinksdesktop } from "../Data/Footerlinksdesktop";
 import { footerpolicy } from "../Data/Footerpolicy";
-gsap.registerPlugin(ScrollTrigger);
 
 function Footer() {
-  const footerref = useRef();
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(footerref.current, {
-        y: 200,
-        opacity: 0,
-        ease: "power4.out",
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: footerref.current,
-          start: "top 90%",
-          end: "bottom 90%",
-          toggleActions: "play none none none",
-        },
-      });
-    });
-    return () => ctx.revert();
-  }, []);
-
   return (
     <>
-      <footer ref={footerref} className="max-w-wrapper m-auto">
+      <footer className="max-w-wrapper m-auto">
         <div className="border-y border-white-95 pt-7.5 ll2:flex ll2:justify-between ll2:items-center ll2:pt-0">
           <div className="space-y-6">
             <div className="flex justify-between items-center">

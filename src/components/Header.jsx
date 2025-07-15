@@ -76,7 +76,11 @@ function Header() {
           </Link>
         </div>
         <div className="flex items-center gap-2.5">
-          <button name="cart" aria-label="Open shopping cart" className="p-3 bg-yellow-50 rounded-full block cursor-pointer 3xl:p-3.5">
+          <button
+            name="cart"
+            aria-label="Open shopping cart"
+            className="p-3 bg-yellow-50 rounded-full block cursor-pointer 3xl:p-3.5"
+          >
             <svg
               className="w-5 h-5 3xl:h-6 3xl:w-6"
               viewBox="0 0 20 20"

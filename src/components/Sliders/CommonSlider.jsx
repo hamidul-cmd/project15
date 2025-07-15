@@ -114,13 +114,13 @@ function CommonSlider({ cardData }) {
     <>
       <div className="relative">
         <div
-        onMouseDown={dragStart}
-        onMouseMove={drag}
-        onMouseUp={dragEnd}
-        onMouseLeave={dragEnd}
-        onTouchStart={dragStart}
-        onTouchMove={drag}
-        onTouchEnd={dragEnd}
+          onMouseDown={dragStart}
+          onMouseMove={drag}
+          onMouseUp={dragEnd}
+          onMouseLeave={dragEnd}
+          onTouchStart={dragStart}
+          onTouchMove={drag}
+          onTouchEnd={dragEnd}
           className="slider relative overflow-hidden mb-10 h-[430px] ll:h-[388px] xll:h-[447px] 3xl:h-[557px] m-auto w-full max-w-[358px] ll:max-w-[660px] xll:max-w-full cursor-grab xll:mb-0"
           ref={sliderRef}
         >
@@ -146,7 +146,11 @@ function CommonSlider({ cardData }) {
             {cardData.map((data, index) => {
               return (
                 <div key={index}>
-                  <ProductsCird data={data} key={data.id} isDragging={isDragging} />
+                  <ProductsCird
+                    data={data}
+                    key={data.id}
+                    isDragging={isDragging}
+                  />
                 </div>
               );
             })}

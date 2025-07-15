@@ -1,9 +1,5 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React from "react";
 import YellowButton from "./Buttons/YellowButton";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 function CommonTitle({
   capsule,
@@ -14,87 +10,6 @@ function CommonTitle({
   buttonPath,
   product,
 }) {
-  const leftRef = useRef(null);
-  const rightRef = useRef(null);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      mm.add(
-        {
-          // Viewports below 900px
-          isSmall: "(max-width: 899px)",
-          // Viewports 900px and above
-          isLarge: "(min-width: 900px)",
-        },
-        (context) => {
-          const { isSmall, isLarge } = context.conditions;
-
-          if (isSmall) {
-            gsap.from(leftRef.current, {
-              y: 100,
-              opacity: 0,
-              duration: 1.5,
-              ease: "power4.out",
-              scrollTrigger: {
-                trigger: leftRef.current,
-                start: "top 90%",
-                end: "bottom 90%",
-                toggleActions: "play none none none",
-              },
-            });
-
-            gsap.from(rightRef.current, {
-              y: 100,
-              opacity: 0,
-              duration: 1.5,
-              ease: "power4.out",
-              scrollTrigger: {
-                trigger: rightRef.current,
-                start: "top 90%",
-                end: "bottom 90%",
-                toggleActions: "play none none none",
-              },
-            });
-          }
-
-          if (isLarge) {
-            gsap.from(leftRef.current, {
-              x: -150,
-              opacity: 0,
-              duration: 1.5,
-              ease: "power4.out",
-              scrollTrigger: {
-                trigger: leftRef.current,
-                start: "top 95%",
-                end: "bottom 95%",
-                toggleActions: "play none none none",
-              },
-            });
-
-            gsap.from(rightRef.current, {
-              x: 150,
-              opacity: 0,
-              duration: 1.5,
-              ease: "power4.out",
-              scrollTrigger: {
-                trigger: rightRef.current,
-                start: "top 95%",
-                end: "bottom 95%",
-                toggleActions: "play none none none",
-              },
-            });
-          }
-        }
-      );
-    });
-
-    return () => {
-      ctx.revert();
-    };
-  }, []);
-
   return (
     <div
       className={`${
@@ -112,7 +27,6 @@ function CommonTitle({
       }`}
     >
       <div
-        ref={leftRef}
         className={`space-y-2.5 xll:space-y-5 3xl:space-y-6 ${
           hero ? "" : "max-w-[600px] xll:max-w-[975px] 3xl:max-w-[1088px]"
         }`}
@@ -130,7 +44,7 @@ function CommonTitle({
         </p>
       </div>
       {buttonText && (
-        <div ref={rightRef} className="w-fit">
+        <div className="w-fit">
           <YellowButton text={buttonText} path={buttonPath} />
         </div>
       )}

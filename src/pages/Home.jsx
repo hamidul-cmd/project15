@@ -1,12 +1,9 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CommonTitle from "../components/CommonTitle";
 import YellowButton from "../components/Buttons/YellowButton";
 import WhiteButton from "../components/Buttons/WhiteButton";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CommonSlider from "../components/Sliders/CommonSlider";
 import AboutCard from "../components/Cards/AboutCard";
-import TestimonialsCard from "../components/Cards/TestimonialsCard";
 import Faq from "../components/commonsection/Faq";
 import { AboutCardData } from "../Data/AboutCardData";
 import { HeroCounter } from "../Data/HeroCounter";
@@ -15,7 +12,6 @@ import { TestimonialsCardData } from "../Data/TestimonialsCardData";
 import { ExperienceData } from "../Data/ExperienceData";
 import Experiencecard from "../components/Cards/Experiencecard";
 import Testimonialssection from "../components/Testimonialssection";
-gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const [isMobile, setIsMobile] = useState(false);
@@ -48,134 +44,11 @@ function Home() {
       colors: ["#739CDA", "#DAA573", "#DAD673"],
     },
   ];
-  const HeroLeftRef = useRef(null);
-  const HeroRightRef = useRef(null);
-  const herocapsuleref = useRef(null);
-  const herocapsuleref2 = useRef(null);
-  const herocapsuleref3 = useRef(null);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      mm.add(
-        {
-          // Viewports below 900px
-          isSmall: "(max-width: 899px)",
-          // Viewports 900px and above
-          isLarge: "(min-width: 900px)",
-        },
-        (context) => {
-          const { isSmall, isLarge } = context.conditions;
-
-          if (isSmall) {
-            gsap.from(HeroLeftRef.current, {
-              y: 100,
-              opacity: 0,
-              duration: 1.5,
-              ease: "power4.out",
-              stagger: 0.2,
-              scrollTrigger: {
-                trigger: HeroLeftRef.current,
-                start: "top 95%",
-                end: "bottom 95%",
-                toggleActions: "play none none none",
-              },
-            });
-            gsap.from(HeroRightRef.current, {
-              y: 100,
-              opacity: 0,
-              duration: 1.5,
-              ease: "power4.out",
-              stagger: 0.2,
-              scrollTrigger: {
-                trigger: HeroRightRef.current,
-                start: "top 95%",
-                end: "bottom 95%",
-                toggleActions: "play none none none",
-              },
-            });
-          }
-
-          if (isLarge) {
-            gsap.from(HeroLeftRef.current, {
-              x: -200,
-              opacity: 0,
-              duration: 1.5,
-              ease: "power4.out",
-              stagger: 0.2,
-              scrollTrigger: {
-                trigger: HeroLeftRef.current,
-                start: "top 95%",
-                end: "bottom 95%",
-                toggleActions: "play none none none",
-              },
-            });
-            gsap.from(HeroRightRef.current, {
-              x: 200,
-              opacity: 0,
-              duration: 1.5,
-              ease: "power4.out",
-              stagger: 0.2,
-              scrollTrigger: {
-                trigger: HeroRightRef.current,
-                start: "top 95%",
-                end: "bottom 95%",
-                toggleActions: "play none none none",
-              },
-            });
-            gsap.from(herocapsuleref.current, {
-              scale: 0,
-              opacity: 0,
-              ease: "power4.out",
-              stagger: 0.2,
-              scrollTrigger: {
-                trigger: herocapsuleref.current,
-                start: "top 95%",
-                end: "bottom 95%",
-                toggleActions: "play none none none",
-              },
-              // Add delay to wait for HeroRightRef animation to complete
-              delay: 1.5, // Match duration of HeroRightRef animation
-            });
-            gsap.from(herocapsuleref2.current, {
-              scale: 0,
-              opacity: 0,
-              ease: "power4.out",
-              stagger: 0.2,
-              scrollTrigger: {
-                trigger: herocapsuleref2.current,
-                start: "top 95%",
-                end: "bottom 95%",
-                toggleActions: "play none none none",
-              },
-              // Add delay to wait for HeroRightRef animation to complete
-              delay: 1.5, // Match duration of HeroRightRef animation
-            });
-            gsap.from(herocapsuleref3.current, {
-              scale: 0,
-              opacity: 0,
-              ease: "power4.out",
-              stagger: 0.2,
-              delay: 1.5,
-              scrollTrigger: {
-                trigger: herocapsuleref3.current,
-                start: "top 95%",
-                end: "bottom 95%",
-                toggleActions: "play none none none",
-              },
-            });
-          }
-        }
-      );
-    });
-    return () => ctx.revert();
-  }, []);
 
   return (
     <>
       <section className="pt-10 px-4 space-y-10 ll:px-10 xll:pt-20 xll:px-20 ll:flex ll:gap-10 xll:gap-14.5 xll:space-y-0 xll:items-center 3xl:pt-14.5 3xl:px-36.6 3xl:gap-20 overflow-x-hidden">
-        <div ref={HeroLeftRef} className="space-y-6 xll:space-y-0">
+        <div className="space-y-6 xll:space-y-0">
           <CommonTitle
             capsule="Style Redefined."
             title="Elevate Your Style with Klothink"
@@ -221,7 +94,7 @@ function Home() {
             ))}
           </div>
         </div>
-        <div ref={HeroRightRef} className="flex justify-center items-center">
+        <div className="flex justify-center items-center">
           <div className="w-[357px] h-[w38px] xll:w-[544px] xll:h-[619px] 3xl:w-[673px] 3xl:h-[769px] bg-white-97 rounded-16 relative">
             <img
               src="https://i.imgur.com/6yqFw5f.png"
@@ -248,21 +121,18 @@ function Home() {
               Best Seller
             </div>
             <div
-              ref={herocapsuleref3}
               className="absolute top-4 left-1/2 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:top-[36px] 3xl:py-1.5 3xl:px-3 3xl:text-base hero__capsule"
             >
               Hoodie{" "}
               <div className="absolute w-[15px] h-[33px] border-t border-l border-gray-15 rounded-tl-[9px] top-1/2 left-0 -translate-x-full after:content-[''] after:block after:absolute after:h-1.5 after:w-1.5 after:rounded-full after:bottom-0 after:left-0 after:-translate-x-1/2 after:bg-black"></div>
             </div>
             <div
-              ref={herocapsuleref2}
               className="absolute top-[35%] left-3 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:left-10 3xl:py-1.5 3xl:px-3 3xl:text-base hero__capsule"
             >
               Casual Jacket
               <div className="absolute w-[15px] h-[33px] border-t border-r border-gray-15 rounded-tr-[9px] top-1/2 right-0 translate-x-full after:content-[''] after:block after:absolute after:h-1.5 after:w-1.5 after:rounded-full after:bottom-0 after:right-0 after:translate-x-1/2 after:bg-black"></div>
             </div>
             <div
-              ref={herocapsuleref}
               className="absolute top-[40%] right-1 py-1 px-2 rounded-full bg-white text-12 font-medium l-150 text-gray-15 xll:right-[27px] xll:top-[60%] 3xl:py-1.5 3xl:px-3 3xl:text-base hero__capsule"
             >
               Full Sleeve

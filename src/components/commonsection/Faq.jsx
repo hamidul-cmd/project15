@@ -1,32 +1,10 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import CommonTitle from "../CommonTitle";
 import Faqcards from "../Cards/Faqcards";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger); 
-
 
 function Faq() {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [config, setConfig] = useState({ columns: 1, totalFaqs: 4 });
-  const faqref = useRef();
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(faqref.current, {
-        y: 200,
-        opacity: 0,
-        ease: "power4.out",
-        duration: 1.5,
-        scrollTrigger: {
-          trigger: faqref.current,
-          start: "top 95%",
-          end: "bottom 95%",
-          toggleActions: "play none none none",
-        },
-      });
-    });
-    return () => ctx.revert();
-  }, []);
 
   const faqData = [
     {
@@ -110,9 +88,8 @@ function Faq() {
 
   const selectedFaqs = faqData.slice(0, config.totalFaqs);
   const chunkSize = 4;
-  const faqChunks = Array.from(
-    { length: config.columns },
-    (_, i) => selectedFaqs.slice(i * chunkSize, (i + 1) * chunkSize)
+  const faqChunks = Array.from({ length: config.columns }, (_, i) =>
+    selectedFaqs.slice(i * chunkSize, (i + 1) * chunkSize)
   );
 
   return (
@@ -124,7 +101,6 @@ function Faq() {
           pera="Ease into the world of Klothink with clarity. Our FAQs cover a spectrum of topics, ensuring you have the information you need for a seamless shopping experience."
         />
         <div
-        ref={faqref}
           style={{
             display: "grid",
             gridTemplateColumns: `repeat(${config.columns}, 1fr)`,
